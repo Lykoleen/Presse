@@ -1,0 +1,36 @@
+services:
+  www:
+    build: /
+    container_name: App
+    ports:
+      - 8080:80
+    volumes:
+      - .././:/var/www
+      - ./php/vhosts:/etc/apache2/site-enabled
+    networks:
+      - presse
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    volumes:
+      - ./var/db_data:/var/lib/mysql # Penser à créer le dossier db_data
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - presse
+    restart: always
+      
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 8081:80
+    networks:
+      - presse
+    environment:
+      PMA_HOST: mysql
+
+
+networks:
+  presse:

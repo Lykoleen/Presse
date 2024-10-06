@@ -9,6 +9,11 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+### Docker ###
+/Docker-presse/var/db_data/
+
+### Docker ###
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
