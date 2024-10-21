@@ -2,6 +2,9 @@ FROM php:8.2-apache
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+# Copier la configuration Apache personnalisée
+COPY ./vhosts/vhost.conf /etc/apache2/sites-available/000-default.conf
+
 RUN apt-get update \
     && apt-get install -qq -y \
     cron \
